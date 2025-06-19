@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>T&T Laundry</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary: #00a1ff;
+      --accent: #fff5da;
+      --white: #ffffff;
+      --text-dark: #1a1a1a;
+      --text-light: #5a5a5a;
+    }
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Fredoka', sans-serif;
+      background-color: var(--white);
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding-top: 70px;
+    }
+    header {
+      background-color: var(--white);
+      padding: 12px 24px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    header h1 {
+      font-size: 1.6rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      margin-top: 18px;
+      text-align: center;
+      text-decoration: none;
+    }
+    .btn-primary:hover {
+      background-color: #0089cc;
+    }
+    section {
+      padding: 60px 24px;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding-top: 90px;
+      }
+      section {
+        padding: 40px 16px;
+      }
+    }
+    section:nth-of-type(even) {
+      background-color: #f9fbfc;
+    }
+    .hero {
+      background-color: var(--accent);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      align-items: center;
+    }
+    .hero img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      object-fit: cover;
+    }
+    .section-title {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 40px;
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .contact-cards, .service-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 28px;
+    }
+    .card {
+      background-color: var(--white);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .card img {
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .card h3 {
+      margin: 12px 0 8px;
+    }
+    .card p {
+      color: var(--text-light);
+      text-align: center;
+    }
+    .card .btn-primary {
+      margin-top: 15px;
+      margin-bottom: 0;
+    }
+    .address {
+      text-align: center;
+    }
+    .address strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+      color: red;
+    }
+    .map iframe {
+      width: 100%;
+      min-height: 320px;
+      border: 0;
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+    .modal {
+      display: none; 
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      overscroll-behavior: contain;
+    }
+    .modal-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .modal-content img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+      display: block;
+    }
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2.5rem;
+      color: white;
+      cursor: pointer;
+      z-index: 10000;
+    }
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.95rem;
+      background-color: var(--white);
+      color: var(--text-light);
+    }
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      header .btn-primary {
+        margin-top: 0;
+        align-self: center;
+      }
+      .close {
+        top: 10px;
+        right: 15px;
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>T&T Laundry, Da Nang, Viet Nam</h1>
+  </header>
+  <section class="hero" id="hero">
+    <div class="hero-text">
+      <h2>T&T Laundry – Freshness You Can Feel</h2>
+      <p>Need a quick wash? We’re just one message away.<br>
+      📲 Book via your favorite app below – fast, friendly, and bilingual 🇻🇳🇬🇧<br>
+      📞 No app? No worries — just call us at +84 935 121 442</p>
+      <a class="btn-primary" href="tel:+84935121442">Call Now</a>
+    </div>
+    <img src="https://i.postimg.cc/VsB65LKy/anhbia.jpg" alt="Laundry Hero">
+  </section>
+  <section id="contact">
+    <h2 class="section-title">Contact Options</h2>
+    <div class="contact-cards">
+      <div class="card">
+        <img src="https://i.postimg.cc/d1SRh6WN/whatsappqr.jpg" alt="WhatsApp QR" onclick="openModal(this.src)">
+        <h3>WhatsApp</h3>
+        <a class="btn-primary" href="https://wa.me/qr/SPW3NK2F36MVP1" target="_blank">Chat via WhatsApp</a>
+      </div>
+      <div class="card">
+        <img src="https://i.postimg.cc/BZ1vKNtW/kakaotalkqr.jpg" alt="KakaoTalk QR" onclick="openModal(this.src)">
+        <h3>KakaoTalk</h3>
+        <a class="btn-primary" href="#" onclick="openModal('https://i.postimg.cc/BZ1vKNtW/kakaotalkqr.jpg'); return false;">Chat via KakaoTalk</a>
+      </div>
+      <div class="card">
+        <img src="https://i.postimg.cc/yxcKDQ17/lineqr.jpg" alt="LINE QR" onclick="openModal(this.src)">
+        <h3>LINE</h3>
+        <a class="btn-primary" href="https://line.me/ti/p/nU1aBwykHW" target="_blank">Chat via LINE</a>
+      </div>
+      <div class="card">
+        <img src="https://i.postimg.cc/MpMkgd46/zaloqr.jpg" alt="Zalo QR" onclick="openModal(this.src)">
+        <h3>Zalo</h3>
+        <a class="btn-primary" href="#" onclick="openModal('https://i.postimg.cc/MpMkgd46/zaloqr.jpg'); return false;">Chat via Zalo</a>
+      </div>
+    </div>
+  </section>
+  <section id="services">
+    <h2 class="section-title">Our Services</h2>
+    <div class="service-cards">
+      <div class="card">
+        <img src="https://i.postimg.cc/5tddw8ts/laundry.jpg" alt="Wash and Fold">
+        <h3>Wash & Fold</h3>
+        <p>20,000 VND/kg<br>Extra charge for small or separate loads.</p>
+      </div>
+      <div class="card">
+        <img src="https://i.postimg.cc/TYpZFtLk/shoecleaning.jpg" alt="Shoe Cleaning">
+        <h3>Shoe Cleaning</h3>
+        <p>50,000 – 120,000 VND/pair<br>Depending on type and material.</p>
+      </div>
+      <div class="card">
+        <img src="https://i.postimg.cc/MT6LD5Jm/delivery.jpg" alt="Delivery Service">
+        <h3>Delivery Service</h3>
+        <p>Pickup & drop‑off available.<br>Delivery fee based on distance.</p>
+      </div>
+    </div>
+  </section>
+  <section id="visit">
+    <h2 class="section-title">Visit Us</h2>
+    <div class="address">
+      <strong>Only 1 location — no branches!</strong>
+      <p>67 Le Van Tam, Ngu Hanh Son district, Da Nang city</p>
+      <a class="btn-primary" href="https://maps.app.goo.gl/69WetK9qDCWRFim78" target="_blank">Open in Google Maps</a>
+    </div>
+    <div class="map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.891979549764!2d108.2544053!3d16.019137699999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31421788206af8d1%3A0x97b31c01175d5e63!2sT%26T%20Laundry!5e0!3m2!1sen!2s!4v1750304412558!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+  <footer>
+    © 2025 T&T Laundry. All rights reserved.
+  </footer>
+  <div class="modal" id="qrModal">
+    <span class="close" onclick="closeModal()">×</span>
+    <div class="modal-content">
+      <img id="modalImage" src="" alt="QR Preview">
+    </div>
+  </div>
+  <script>
+    function openModal(src) {
+      document.getElementById('modalImage').src = src;
+      document.getElementById('qrModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      document.getElementById('qrModal').style.display = 'none';
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+  </script>
+</body>
+</html>
